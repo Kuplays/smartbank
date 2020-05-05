@@ -1,0 +1,59 @@
+<div class="card my-5">
+  <div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="dateFrom">Дата от</label>
+        <input type="date" [(ngModel)]="from" 
+          class="form-control"
+          id="from"
+          name="from">
+      </div>
+      <div class="form-group">
+        <label for="dateUntil">Дата до</label>
+        <input type="date" [(ngModel)]="until" 
+          class="form-control"
+          id="until"
+          name="until">
+      </div>
+      <div class="form-group">
+        <label for="client">По клиенту</label><br>
+        <select [(ngModel)]="clientid"
+        	id="clientSelected" 
+        	name="clientSelected">
+        	<option *ngFor="let client of clients" value="{{client.id}}">{{client.name}}</option>
+        </select>
+      </div>
+      <button type="submit" [disabled]="!userForm.form.valid" 
+        class="btn btn-info">Показать</button>
+    </form>
+  </div>
+</div>
+
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID транзакции</th>
+          <th scope="col">ID счета</th>
+          <th scope="col">ID клиента</th>
+          <th scope="col">Тип транзакции</th>
+          <th scope="col">Сумма</th>
+          <th scope="col">Дата транзакции</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>{{ transaction.id }}</td>
+          <td>{{ transaction.accountId }}</td>
+          <td>{{ transaction.clientId }}</td>
+          <td *ngIf="transaction.type === 'OUTCOME'">СПИСАНИЕ</td>
+          <td *ngIf="transaction.type === 'INCOME'">ПОСТУПЛЕНИЕ</td>
+          <td *ngIf="transaction.type === 'TRANSFER'">ПЕРЕВОД</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

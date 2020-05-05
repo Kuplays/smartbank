@@ -1,0 +1,21 @@
+<div class="card my-6">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Имя</th>
+          <th scope="col">Возраст</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <td>{{ client.id }}</td>
+          <td><a [routerLink]="['/clientaccounts', client.id]">{{ client.name }}</a></td>
+          <td>{{ client.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-addclient></app-addclient>
+</div>

@@ -1,0 +1,17 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Баланс</label>
+        <input type="text" [(ngModel)]="account.balance" 
+          class="form-control"
+          id="balance"
+          name="balance"
+          placeholder="Введите баланс"
+          required #name="ngModel">
+      </div>
+      <button type="submit" [disabled]="!userForm.form.valid" 
+        class="btn btn-info">Добавить счет</button>
+    </form>
+  </div>
+</div>
